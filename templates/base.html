@@ -16,7 +16,7 @@
 
         <style>
             *{ font-family: 'Slabo 27px', serif; }
-            .header{ background-color: black; color:white; padding: 10px 15px }
+            .header{ background-color: goldenrod; color:white; padding: 10px 15px }
             .alert-danger{ margin:30px 0; }
             .error{ color:red; }
         </style>
@@ -27,8 +27,24 @@
         <div class="container">
             <div class="row header">
                 <div class="col"> <h4>{{ page_header }}</h4> </div>
-                <div class="col-3"><a href="/">Main Page</a></div>
-                <div class="col-3"><a href="/blog_form">Add a Blog</a></div>
+                <div class="col-2"><a href="/">Main Page</a></div>
+                <div class="col-2"><a href="/blog">All Blogs</a></div>
+                {% if loggedin %}
+                    <div class="col-2"><a href="/blog_form">Add a Blog</a></div>
+                    <div class="col-2"><a href="/logout">Logout</a></div>
+                {% else %}
+                    <div class="col-2"><a href="/login">Login</a></div>
+                    <div class="col-2"><a href="/register">Register</a></div>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col">
+                    <br>
+                    {% if loggedin %}
+                        <span style="color:yellow;">{{ session['username'] }}</span> is logged in 
+                    {% endif %}
+
+                </div>
             </div>
             <hr>
             <div class="row">
